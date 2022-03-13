@@ -13,7 +13,7 @@ const UserList = (props) => {
         {processedData &&
           processedData?.map((row, i) => {
             return (
-              <li className='text-lg py-1' key={row.id}>
+              <li className='md:text-lg text-sm py-1' key={row.id}>
                 {i + 1}. <Link to={`/${row.login}`}>{row.login}</Link>
               </li>
             );
