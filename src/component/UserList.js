@@ -2,25 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { getAllUser } from '../api/index';
 
 const UserList = (props) => {
-  const [listUsers, setListUsers] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      setListUsers(await getAllUser());
-    };
-    fetchData();
-  }, []);
-  console.log(listUsers);
+  const { users = [], openUsers, setOpenUsers, selectedUsers, setSelectedUsers } = props;
+
+  const processedData = users?.map((row) => ({
+    id: row.id,
+    login: row.login,
+  }));
+
+  const handleClick = (login) => {
+    console.log('Click');
+    console.log('Login : ', setSelectedUsers(login));
+  };
   return (
     <div>
       <ul>
-        {listUsers &&
-          listUsers?.map((data) => {
+        {processedData &&
+          processedData?.map((row) => {
             return (
-              <div>
-                <li>
-                  <button>{data.login}</button>
-                </li>
-              </div>
+              <li key={row.id}>
+                <button onClick={() => handleClick(row.login)}>{row.login}</button>
+              </li>
             );
           })}
       </ul>
