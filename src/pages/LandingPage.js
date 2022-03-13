@@ -10,7 +10,7 @@ const LandingPage = () => {
         <Route path='/' exact>
           <Users />
         </Route>
-        <Route path='/:login/repos' exact>
+        <Route path='/:login' exact>
           <UserItem />
         </Route>
       </Switch>

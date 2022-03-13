@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllUser } from '../api/index';
 
 const UserList = (props) => {
   const { users = [] } = props;
@@ -10,12 +9,12 @@ const UserList = (props) => {
   }));
   return (
     <div>
-      <ul>
+      <ul className='px-5 leading-6 '>
         {processedData &&
-          processedData?.map((row) => {
+          processedData?.map((row, i) => {
             return (
-              <li key={row.id}>
-                <Link to={`/${row.login}/repos`}>{row.login}</Link>
+              <li className='text-lg' key={row.id}>
+                {i + 1}. <Link to={`/${row.login}`}>{row.login}</Link>
               </li>
             );
           })}

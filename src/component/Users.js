@@ -13,8 +13,8 @@ const Users = (props) => {
     fetchData();
   }, []);
   return (
-    <div>
-      <h1>List Repositories</h1>
+    <div className=' container-xl py-3 px-[40px] bg-white text-[#0D1117]'>
+      <h1 className='md:text-2xl lg:text-3xl py-[30px] '>List Repositories : </h1>
       <UserList setSelectedUsers={setSelectedUsers} users={users} setUsers={setUsers} />
     </div>
   );

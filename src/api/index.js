@@ -12,5 +12,8 @@ export const getAllUser = async () => {
 };
 
 export const getUserRepo = async (login) => {
+  return await axios.get(`${URL}/${login}`).then((res) => res.data);
+};
+export const getRepo = async (login) => {
   return await axios.get(`${URL}/${login}/repos`).then((res) => res.data);
 };
