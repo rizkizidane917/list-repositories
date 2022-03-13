@@ -1,34 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const UserItem = (props) => {
-  const { users, selectedUsers } = props;
+import { getUserRepo } from '../api/index';
 
-  const [avatar_url, setAvatar_url] = useState('');
-  const [login, setLogin] = useState('');
-  const [followers, setfollowers] = useState(0);
-  const [following, setFollowing] = useState(0);
-
+const UserItem = () => {
+  const params = useParams();
+  const [users, setUsers] = useState([]);
   useEffect(() => {
-    const foundData = users?.find((row) => row?.login === selectedUsers);
-    setAvatar_url(foundData?.avatar_url);
-    setLogin(foundData?.login);
-    setfollowers(foundData?.followers);
-    setFollowing(foundData?.following);
-  }, [users, selectedUsers]);
-
-  console.log(users);
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    const list = await getUserRepo(params.login);
+    setUsers(list);
+  };
+  console.log('user', users);
 
   return (
     <div>
       <div>
-        <img src={avatar_url} />
-        <h2>Name : {login} </h2>
-        <h2>Followers : {followers} </h2>
-        <h2>Following : {following} </h2>
-        {/* <img src={users.imageUrl} />
-        <h2>Name : {users.name}</h2>
+        <Link to='/'>Home </Link>
+        <img src={users.avatar_url} />
+        <h2>Name : {users.full_name}</h2>
         <h2>Followers : {users.followers}</h2>
-        <h2>Following : {users.following}</h2> */}
+        <h2>Following : {users.following}</h2>
       </div>
     </div>
   );

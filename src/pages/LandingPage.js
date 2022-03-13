@@ -1,10 +1,20 @@
 import React from 'react';
 import Users from '../component/Users';
+import { Route, Switch } from 'react-router-dom';
+import UserItem from '../component/UserItem';
+
 const LandingPage = () => {
   return (
-    <div>
-      <Users />
-    </div>
+    <Route>
+      <Switch>
+        <Route path='/' exact>
+          <Users />
+        </Route>
+        <Route path='/:login/repos' exact>
+          <UserItem />
+        </Route>
+      </Switch>
+    </Route>
   );
 };
 export default LandingPage;
