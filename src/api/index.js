@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'https://jsonplaceholder.typicode.com/users';
+const URL = 'https://api.github.com/users';
 
 export const getAllUser = async () => {
   try {
@@ -11,6 +11,6 @@ export const getAllUser = async () => {
   }
 };
 
-export const getUserRepo = async (username) => {
-  await axios.get(`${URL}/${username}`);
+export const getUserRepo = async (login) => {
+  await axios.get(`${URL}/${login}`);
 };
